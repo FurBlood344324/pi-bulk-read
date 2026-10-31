@@ -1,6 +1,6 @@
 {
   "name": "pi-bulk-read",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read many files or one long file in a single budgeted call for pi: ranges, globs, real line numbers, and an outline for whatever does not fit.",
   "keywords": [
     "pi-package",
