@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # pi supplies the host packages at runtime; only `typebox` is imported at runtime by the
+      # tool schema, so it is the one thing the tests actually need installed. Pinned on purpose:
+      # a typebox API change should break here first, not in a user session.
+      - name: Host packages
+        run: bun add --no-save typebox@1.4.3 @types/node
+
+      - name: test
+        run: bun run test/test-bulk-read.ts

@@ -1,5 +1,8 @@
 # pi-bulk-read
 
+[![npm](https://img.shields.io/npm/v/pi-bulk-read)](https://www.npmjs.com/package/pi-bulk-read)
+[![ci](https://github.com/FurBlood344324/pi-bulk-read/actions/workflows/ci.yml/badge.svg)](https://github.com/FurBlood344324/pi-bulk-read/actions/workflows/ci.yml)
+
 Read many files — or one long file — in **one budgeted call** for [pi](https://pi.dev).
 Ranges, globs, real line numbers, and an outline for whatever does not fit.
 
@@ -96,6 +99,24 @@ bun run test/test-bulk-read.ts
 Covers range/glob parsing, outline spans for markdown/code/yaml, control flow being excluded from
 the symbol map, budget behaviour and continuation calls, error reporting, and the real `execute`
 path of the registered tool.
+
+## Releasing
+
+`ci.yml` runs the test suite on every push and pull request. `publish.yml` publishes from GitHub
+with npm provenance (OIDC, no local OTP):
+
+```bash
+# bump "version" in package.json, commit, then
+git tag v0.1.0 && git push origin v0.1.0
+```
+
+The workflow refuses a tag that does not match `package.json`, verifies the tests, skips a version
+that is already on npm, and publishes with `--provenance` (pre-release versions go to the `next`
+dist-tag). `gh workflow run publish.yml --ref main` publishes the current version without a tag.
+
+The **first** publish of a new package name is still done locally (`npm publish --access public`),
+because npm trusted publishing can only be configured for a package that already exists. After that,
+add the repository as a trusted publisher in the package settings on npmjs.com.
 
 ## License
 
