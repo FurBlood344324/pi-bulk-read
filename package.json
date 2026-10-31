@@ -1,0 +1,47 @@
+{
+  "name": "pi-bulk-read",
+  "version": "0.1.0",
+  "description": "Read many files or one long file in a single budgeted call for pi: ranges, globs, real line numbers, and an outline for whatever does not fit.",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-extension",
+    "read",
+    "context",
+    "outline",
+    "tokens",
+    "tools"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "author": "furblood344324",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FurBlood344324/pi-bulk-read.git"
+  },
+  "homepage": "https://github.com/FurBlood344324/pi-bulk-read#readme",
+  "bugs": {
+    "url": "https://github.com/FurBlood344324/pi-bulk-read/issues"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/bulk-read.ts"
+    ]
+  },
+  "files": [
+    "extensions",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "bun run test/test-bulk-read.ts"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  }
+}
